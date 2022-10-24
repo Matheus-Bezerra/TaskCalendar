@@ -6,6 +6,7 @@ export const OptionsPage = ({
   campsFormTask,
   clearValues,
   setsFunction,
+  isVisibleCharts,
 }: OptionsPageProps) => {
   const { setCampsFormTask, setHandleShowModalCreate, setIsVisibleCharts } =
     setsFunction;
@@ -20,10 +21,10 @@ export const OptionsPage = ({
           color="white"
           _hover={{ bg: 'green.700' }}
           onClick={() => {
-            setIsVisibleCharts(true);
+            setIsVisibleCharts((state) => !state);
           }}
         >
-          Ver gráfico
+          {!isVisibleCharts ? 'Ver gráfico' : 'Ver tabela'}
         </Button>
       </Flex>
       <Button

@@ -34,5 +34,15 @@ export function useGetTasks(searchTask: string) {
     }
   }
 
-  return {tasks, foundTasks, isLoadingGetTasks, setTasks}
+  function getIsCompletedTasks() {
+      const tasksLength = tasks.length
+      const quantityIsCompleted = tasks.reduce((total, value) => {
+        if(value.isComplete) return total + 1
+        return total
+      }, 0)
+      const quantityNotIsCompleted = tasksLength - quantityIsCompleted
+      return [quantityIsCompleted, quantityNotIsCompleted]
+  }
+
+  return {tasks, foundTasks, isLoadingGetTasks, setTasks, getIsCompletedTasks}
 }

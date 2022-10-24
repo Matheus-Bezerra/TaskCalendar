@@ -8,4 +8,5 @@ export interface OptionsPageProps {
     setIsVisibleCharts: React.Dispatch<React.SetStateAction<boolean>>;
   };
   clearValues: () => void;
+  isVisibleCharts: boolean
 }

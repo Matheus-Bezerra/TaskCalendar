@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Box, Divider, Stack } from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { Box, Divider, Flex, Stack } from '@chakra-ui/react';
 import { formatDate } from '../../utils/formatDateTimeHours';
 import { ModalEdit } from './components/ModalEdit';
 import { ModalCreate } from './components/ModalCreate';
@@ -12,6 +12,8 @@ import { useGetTasks } from '../../hooks/Tasks/useGetTasks';
 import { useDeleteTasks } from '../../hooks/Tasks/useDeleteTasks';
 import { useEditTasks } from '../../hooks/Tasks/useEditTasks';
 import { useCreateTasks } from '../../hooks/Tasks/useCreateTasks';
+// @ts-ignore
+import { ChartTask } from './components/Chart';
 
 const initialValuesCampsTask = {
   title: '',
@@ -32,8 +34,20 @@ export const Tasks = () => {
   );
 
   // My Hooks
-  const { tasks, setTasks, foundTasks, isLoadingGetTasks } =
-    useGetTasks(searchTask);
+  const {
+    tasks,
+    setTasks,
+    foundTasks,
+    isLoadingGetTasks,
+    getIsCompletedTasks,
+  } = useGetTasks(searchTask);
+  const [quantityTasksIsCompleted, setQuantityTasksIsCompleted] = useState(
+    getIsCompletedTasks(),
+  );
+
+  useEffect(() => {
+    setQuantityTasksIsCompleted(getIsCompletedTasks());
+  }, [tasks]);
 
   const { handleRemoveTask, isLoadingDeletingTask } = useDeleteTasks({
     useTasks: [tasks, setTasks],
@@ -128,26 +142,31 @@ export const Tasks = () => {
             setHandleShowModalCreate: setHandleShowModalCreate,
             setIsVisibleCharts: setIsVisibleCharts,
           }}
+          isVisibleCharts={isVisibleCharts}
         />
         <Divider />
-        <Box as="section">
-          <InputSearch
-            data={searchTask}
-            setData={setSearchTask}
-            placeholder="Pesquise uma tarefa pelo título"
-          />
-        </Box>
+        {!isVisibleCharts && (
+          <Box as="section">
+            <InputSearch
+              data={searchTask}
+              setData={setSearchTask}
+              placeholder="Pesquise uma tarefa pelo título"
+            />
+          </Box>
+        )}
         <Box as="main">
-          <TableContainerApp
-            dataItem={{ data: tasks, foundDataItem: foundTasks }}
-            isLoading={isLoadingGetTasks}
-            handleToggleTaskCompletion={handleToggleTaskCompletion}
-            setsFunctions={{
-              setHandleAlertDialog: setHandleAlertDialog,
-              setIdTaskSelected: setIdTaskSelected,
-            }}
-            prepareEdit={prepareEdit}
-          />
+          {!isVisibleCharts && (
+            <TableContainerApp
+              dataItem={{ data: tasks, foundDataItem: foundTasks }}
+              isLoading={isLoadingGetTasks}
+              handleToggleTaskCompletion={handleToggleTaskCompletion}
+              setsFunctions={{
+                setHandleAlertDialog: setHandleAlertDialog,
+                setIdTaskSelected: setIdTaskSelected,
+              }}
+              prepareEdit={prepareEdit}
+            />
+          )}
           <AlertTask
             handleAlertDialog={handleAlertDialog}
             handleRemoveTask={handleRemoveTask}
@@ -156,6 +175,14 @@ export const Tasks = () => {
             setHandleAlertDialog={setHandleAlertDialog}
           />
         </Box>
+        {isVisibleCharts && quantityTasksIsCompleted && (
+          <Flex justify="center">
+            <ChartTask
+              series={quantityTasksIsCompleted}
+              isLoading={isLoadingGetTasks}
+            />
+          </Flex>
+        )}
       </Stack>
     </Box>
   );
