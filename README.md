@@ -29,6 +29,7 @@ O projeto foi desenvolvido com as seguintes Tecnologias:
 - React
 - Typescript
 - Chakra UI
+- Apex Charts
 - Axios
 - Node com Express
 - UUID
