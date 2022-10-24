@@ -18,12 +18,30 @@ class TasksRepository {
       {
       id: String(uuidV4()),
       title: "Academia",
-      description: "Treinar braço",
-      taskDateTime: "2022-08-08 16:00:10",
-      duration: 2,
+      description: "Treinar Braço",
+      taskDateTime: "2022-10-25 09:00:30",
+      duration: 3,
       isComplete: false,
       created_at: new Date()
-    }
+    },
+    {
+      id: String(uuidV4()),
+      title: "Estudar Ignite",
+      description: "Trilha Full Stack",
+      taskDateTime: "2022-10-18 07:00:00",
+      duration: 2,
+      isComplete: true,
+      created_at: new Date()
+    },
+    {
+      id: String(uuidV4()),
+      title: "Estudar testes e Next",
+      description: "Módulo 5",
+      taskDateTime: "2022-10-23 20:00:05",
+      duration: 12,
+      isComplete: true,
+      created_at: new Date()
+    },
   ]
   }
 
@@ -72,7 +90,7 @@ class TasksRepository {
   }
 
   IsThrutyOrfalsyCompleteTask(id: string, {isComplete }: Pick<IDataTaskDTO, "isComplete" >) {
-    const newTasks = this.tasks.map((task, index) => {
+    const newTasks = this.tasks.map((task) => {
       if(task.id == id) {
         task.id = id,
         task.isComplete = isComplete
