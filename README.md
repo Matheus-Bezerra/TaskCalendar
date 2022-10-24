@@ -16,8 +16,7 @@ Passos para rodar o projeto:
 <hr> <br>
 
 <div align="center">
-    <img src="./public/DesygnSystemLab.png" alt="DashGo Sistema" height="350">
-    <img src="./public/Storybook(DesygnSystem).png" alt="DashGo Sistema" height="350">
+    <img src="./assets/taskList.gif" alt="Task List Sistema" height="350">
 </div>
 
 <hr>
@@ -28,6 +27,7 @@ O projeto foi desenvolvido com as seguintes Tecnologias:
 
 - React
 - Typescript
+- Context API
 - Chakra UI
 - Apex Charts
 - Axios
