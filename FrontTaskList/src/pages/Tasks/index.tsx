@@ -26,6 +26,7 @@ export const Tasks = () => {
   const [handleShowModalCreate, setHandleShowModalCreate] = useState(false);
   const [handleShowModalEdit, setHandleShowModalEdit] = useState(false);
   const [handleAlertDialog, setHandleAlertDialog] = useState(false);
+  const [isVisibleCharts, setIsVisibleCharts] = useState(false);
   const [campsFormTask, setCampsFormTask] = useState<campsFormTaskProps>(
     initialValuesCampsTask,
   );
@@ -74,6 +75,14 @@ export const Tasks = () => {
         setCampsFormTask({ ...campsFormTask, description: value });
         break;
       case 'taskDateTime':
+        const isTime = value.split('T');
+        if (isTime) {
+          setCampsFormTask({
+            ...campsFormTask,
+            taskDateTime: `${isTime[0]} ${isTime[1]}`,
+          });
+          return;
+        }
         setCampsFormTask({ ...campsFormTask, taskDateTime: value });
         break;
       case 'duration':
@@ -117,6 +126,7 @@ export const Tasks = () => {
           setsFunction={{
             setCampsFormTask: setCampsFormTask,
             setHandleShowModalCreate: setHandleShowModalCreate,
+            setIsVisibleCharts: setIsVisibleCharts,
           }}
         />
         <Divider />

@@ -50,7 +50,6 @@ export const ModalCreate = ({
                 datatype={'description'}
               />
             </FormControl>
-
             <FormControl isRequired>
               <FormLabel>Data e hora do início</FormLabel>
               <Input

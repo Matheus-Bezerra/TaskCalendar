@@ -7,12 +7,25 @@ export const OptionsPage = ({
   clearValues,
   setsFunction,
 }: OptionsPageProps) => {
-  const { setCampsFormTask, setHandleShowModalCreate } = setsFunction;
+  const { setCampsFormTask, setHandleShowModalCreate, setIsVisibleCharts } =
+    setsFunction;
   return (
-    <Flex as="header" justify="space-between">
-      <Text as={'h2'} fontSize={'2xl'}>
-        Tarefas
-      </Text>
+    <Flex as="header" justify="space-between" gap={4} flexWrap={'wrap'}>
+      <Flex gap={5} align="center">
+        <Text as={'h2'} fontSize={'2xl'}>
+          Tarefas
+        </Text>
+        <Button
+          bg={'green.600'}
+          color="white"
+          _hover={{ bg: 'green.700' }}
+          onClick={() => {
+            setIsVisibleCharts(true);
+          }}
+        >
+          Ver gráfico
+        </Button>
+      </Flex>
       <Button
         bg={'blue.400'}
         color="white"
