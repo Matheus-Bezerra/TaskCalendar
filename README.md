@@ -8,7 +8,7 @@ Passos para rodar o projeto:
 </h2>
 <p>
   Aperte o botão "Code" acima para clonar o projeto para seu computador. <br>
-  Após fazer o clone para seu computador, Recomendo usar a versão 16.14.0 do <a href="https://nodejs.org/en/" alt="Link para a instalaçao do Node">Node</a>, instale diretamente no site do Node ou altere usando o <a href="https://github.com/nvm-sh/nvm#installing-and-updating" alt="link para a instalação do NVM">Nvm</a> .<br>
+  Após fazer o clone para seu computador, Recomendo usar a versão 16.14.0 do <a href="https://nodejs.org/en/" alt="Link para a instalaçao do Node" target="_blank">Node</a>, instale diretamente no site do Node ou altere usando o <a href="https://github.com/nvm-sh/nvm#installing-and-updating" alt="link para a instalação do NVM" target="_blank">Nvm</a> .<br>
   Acesse a pasta do projeto e para rodar o Back-end, faça os seguintes passos: 1 - cd BackTaskList; 2 - npm i; 3 - npm run dev. <br>
   Agora para rodar o Front-end, faça os seguintes passos: 1 - cd FrontTaskList; 2 - npm i; 3 - npm run dev. <br>
   Pronto, agora só acessar no navegador o seguinte endereço: http://localhost:5173
